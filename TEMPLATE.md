@@ -1,4 +1,4 @@
-# [Machine Name] — [HackTheBox / Playground] Report
+# [Machine Name] — [Platform] Report
 
 | Difficulty | OS | Category |
 | ---------- | -- | -------- |
