@@ -297,8 +297,7 @@ Because the mount point was shared, the ownership and SUID changes made on the h
 ```
 admin' or 1=1 -- -
 ```
-`[Insert screenshot: Burp Suite request/response showing "Login Success"]`
-
+![Successful SQLi](./images/successful-sqli.png)
 ---
 
 ### 2. Server-Side Template Injection (Remote Code Execution) — Critical
@@ -318,7 +317,11 @@ admin' or 1=1 -- -
 {{7*7}}
 → Rendered output: 49
 ```
-`[Insert screenshots: SSTI confirmation and RCE/reverse shell]`
+![SSTI - check](./images/SSTI check.png)
+
+![SSTI -confirmed](./images/SSTI check - confirmed.png)
+
+
 
 ---
 
