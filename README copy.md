@@ -59,20 +59,6 @@ All reports in this repo follow the structure defined in [`TEMPLATE.md`](./TEMPL
 
 ---
 
-## Adding a New Report
-
-**If it belongs to the track currently in progress:**
-1. Create a folder: `<track-folder>/<machine-name>/`
-2. Copy `TEMPLATE.md` into it as `README.md` and fill it in
-3. Add an `images/` subfolder inside it and commit screenshots there directly, using relative paths (`./images/screenshot.png`)
-4. Add a row to that track's table above
-5. Add any new techniques to the Skills Index
-
-**If it's the first machine in a brand-new track:**
-1. Do all of the above, plus add a new `<details>` block under "Reports by Track" for that track before adding its first row
-
----
-
 ## Disclaimer
 
 All reports document activity performed against intentionally vulnerable, isolated lab environments (HackTheBox, or equivalent authorized platforms) for educational and portfolio purposes only. No techniques described here were used against systems without authorization.
