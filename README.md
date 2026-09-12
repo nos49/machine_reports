@@ -6,34 +6,42 @@ Each report follows a standard structure: Executive Summary → Scope → Method
 
 ---
 
-## Index
+## Reports by Track
 
-### HackTheBox
+Click a track to expand its machine list. New tracks are added here once I actually start them — nothing is pre-listed as a placeholder.
 
-| Machine | OS | Difficulty | Category | Key Techniques | Report |
-| ------- | -- | ---------- | -------- | --------------- | ------ |
-| GoodGames | Linux | Easy | Web | SQLi, SSTI, Docker privesc | [Report](./htb/goodgames/README.md) |
-| Writeup | Linux | Esay | Web | Blind time-based SQLi, Hashcat, Process privesc | [Report](./htb/writeup/README.md)
-| Precious | Linux | Easy | Web | Insecure Deserialization (Ruby), Command Injection | [Report](./htb/precious/README.md)
+<details open>
+<summary><strong>Intro to Red Team</strong> (3)</summary>
 
+| Machine | OS | Difficulty | Key Techniques | Report |
+| ------- | -- | ---------- | ---------------- | ------ |
+| GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./intro-to-red-team/goodgames/README.md) |
+| Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./intro-to-red-team/writeup/README.md) |
+| Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./intro-to-red-team/precious/README.md) |
+
+</details>
 
 ---
 
 ## Skills Index
 
-A quick-reference cross-index of techniques demonstrated across all reports, useful for reviewers scanning for specific competencies.
+A cross-reference of techniques demonstrated across all reports, useful for reviewers scanning for specific competencies.
+
+<details open>
+<summary>Expand skills index</summary>
 
 | Skill / Technique | Machines |
 | ------------------ | -------- |
-| SQL Injection | GoodGames |
+| SQL Injection | GoodGames, Writeup |
 | Server-Side Template Injection (SSTI) | GoodGames |
+| Command Injection | Precious |
+| Insecure Deserialization | Precious |
 | Docker / Container Privilege Escalation | GoodGames |
-| Blind time-based SQL Injection | Writeup | 
-| Hashcat | Writeup |
-| Process Privilege Escalation | Writeup |
-| Insecure Deserialization (Ruby)| Precious |
-| Command Injection | Precious | 
+| PATH Hijacking / Uncontrolled Search Path | Writeup |
+| Hash Cracking | Writeup |
+| Cleartext Credential Discovery | Precious |
 
+</details>
 
 ---
 
