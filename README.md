@@ -14,7 +14,7 @@ Each report follows a standard structure: Executive Summary → Scope → Method
 | ------- | -- | ---------- | -------- | --------------- | ------ |
 | GoodGames | Linux | Easy | Web | SQLi, SSTI, Docker privesc | [Report](./htb/goodgames/README.md) |
 | Writeup | Linux | Esay | Web | Blind time-based SQLi, Hashcat, Process privesc | [Report](./htb/writeup/README.md)
-| Precious | Linux | Easy | Web | Insecure Deserialization (Ruby), Command Injection | [Report](./htb/precious/README.me)
+| Precious | Linux | Easy | Web | Insecure Deserialization (Ruby), Command Injection | [Report](./htb/precious/README.md)
 
 
 ---
