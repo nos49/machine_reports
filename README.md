@@ -18,6 +18,7 @@ Click a track to expand its machine list. New tracks are added here once I actua
 | GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./htb/goodgames/README.md) |
 | Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./htb/writeup/README.md) |
 | Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./htb/precious/README.md) |
+| Driver | Windows | Easy | Default Password (Basic Authentication), NTLM Hash Capture, Hash Cracking, Printer privesc (CVE-2019-19363)| [Report](./htb/driver/README.md)
 
 </details>
 
@@ -38,8 +39,11 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Insecure Deserialization | Precious |
 | Docker / Container Privilege Escalation | GoodGames |
 | PATH Hijacking / Uncontrolled Search Path | Writeup |
-| Hash Cracking | Writeup |
+| Hash Cracking | Writeup, Driver |
 | Cleartext Credential Discovery | Precious |
+| Default password (Basic Authentication | Driver |
+| NTLM Hash Capture (Responder) | Driver |
+
 
 </details>
 
