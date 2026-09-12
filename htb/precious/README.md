@@ -481,7 +481,7 @@ Identified and exploited an insecure deserialization vulnerability in a custom p
 | Username | Method | Notes |
 | -------- | ------ | ----- |
 | `ruby` | Command injection RCE | Initial foothold, no prior credentials required |
-| `henry` | Cleartext credentials in `.bundle/config` | Password: `Q3c1AqGHtoI0aXAYFH` (redact if sharing publicly) |
+| `henry` | Cleartext credentials in `.bundle/config` | Password: `Q3c1AqGHtoI0aXAYFH` |
 | `root` | Insecure deserialization via sudo rule | Escalated via crafted `dependencies.yml` gadget chain |
 
 ### D. Command Reference Log
@@ -525,4 +525,3 @@ cat /root/root.txt
 - [PayloadsAllTheThings: Ruby Insecure Deserialization](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Insecure%20Deserialization/Ruby.md)
 - [Official Hack The Box Precious Machine Page](https://app.hackthebox.com/machines/Precious)
 
-> **Note on the official writeup PDF:** The attached official HTB writeup (D22.100.213, prepared by C4rm3l0) is licensed HTB content and has not been reproduced here. It is referenced above via the permanent HTB machine page rather than the uploaded file, since redistributing the official document's text would not be appropriate for a public portfolio repo.
