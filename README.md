@@ -15,9 +15,9 @@ Click a track to expand its machine list. New tracks are added here once I actua
 
 | Machine | OS | Difficulty | Key Techniques | Report |
 | ------- | -- | ---------- | ---------------- | ------ |
-| GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./intro-to-red-team/goodgames/README.md) |
-| Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./intro-to-red-team/writeup/README.md) |
-| Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./intro-to-red-team/precious/README.md) |
+| GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./htb/goodgames/README.md) |
+| Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./htb/writeup/README.md) |
+| Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./htb/precious/README.md) |
 
 </details>
 
