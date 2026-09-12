@@ -31,7 +31,8 @@ A quick-reference cross-index of techniques demonstrated across all reports, use
 | Blind time-based SQL Injection | Writeup | 
 | Hashcat | Writeup |
 | Process Privilege Escalation | Writeup |
-| Insecure Deserialization (Ruby), Command Injection | Precious |
+| Insecure Deserialization (Ruby)| Precious |
+| Command Injection | Precious | 
 
 
 ---
