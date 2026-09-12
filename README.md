@@ -13,6 +13,7 @@ Each report follows a standard structure: Executive Summary → Scope → Method
 | Machine | OS | Difficulty | Category | Key Techniques | Report |
 | ------- | -- | ---------- | -------- | --------------- | ------ |
 | GoodGames | Linux | Easy | Web | SQLi, SSTI, Docker privesc | [Report](./htb/goodgames/README.md) |
+| Writeup | Linux | Esay | Web | Blind time-based SQLi, Hashcat, Process privesc | [Report](./htb/writeup/README.md)
 
 
 ---
@@ -26,6 +27,9 @@ A quick-reference cross-index of techniques demonstrated across all reports, use
 | SQL Injection | GoodGames |
 | Server-Side Template Injection (SSTI) | GoodGames |
 | Docker / Container Privilege Escalation | GoodGames |
+| Blind time-based SQL Injection | Writeup | 
+| Hashcat | Writeup |
+| Process Privilege Escalation | Writeup |
 
 
 ---
