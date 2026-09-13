@@ -8,7 +8,7 @@ Each report follows a standard structure: Executive Summary → Scope → Method
 
 ## Reports by Track
 
-Click a track to expand its machine list. New tracks are added here once I actually start them — nothing is pre-listed as a placeholder.
+Click a track to expand its machine list.
 
 <details open>
 <summary><strong>Intro to Red Team</strong> </summary>
