@@ -18,7 +18,8 @@ Click a track to expand its machine list. New tracks are added here once I actua
 | GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./htb/goodgames/README.md) |
 | Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./htb/writeup/README.md) |
 | Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./htb/precious/README.md) |
-| Driver | Windows | Easy | Default Password (Basic Authentication), NTLM Hash Capture, Hash Cracking, Printer privesc (CVE-2019-19363)| [Report](./htb/driver/README.md)
+| Driver | Windows | Easy | Default creds, NTLM Hash Capture, Hash Cracking, Printer privesc (CVE-2019-19363)| [Report](./htb/driver/README.md) |
+| BoardLight | Linux | Easy | Default Creds, Subdomain enum, Dolibarr RCE (CVE-2023-30253), Cleartext creds/reuse, Enlightenment privesc (CVE-2022-37706) | [Report](./htb/boardlight/README.md) | 
 
 </details>
 
@@ -40,9 +41,11 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Docker / Container Privilege Escalation | GoodGames |
 | PATH Hijacking / Uncontrolled Search Path | Writeup |
 | Hash Cracking | Writeup, Driver |
-| Cleartext Credential Discovery | Precious |
-| Default password (Basic Authentication | Driver |
+| Cleartext Credential Discovery | Precious, BoardLight |
+| Default password (Basic Authentication | Driver, BoardLight |
 | NTLM Hash Capture (Responder) | Driver |
+| Credential Reuse | Goodgames, Writeup, Precious, Driver, BoardLight |
+| Subdomain Enumeration | BoardLight |
 
 
 </details>
