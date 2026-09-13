@@ -15,11 +15,11 @@ Click a track to expand its machine list.
 
 | Machine | OS | Difficulty | Key Techniques | Report |
 | ------- | -- | ---------- | ---------------- | ------ |
-| GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./htb/intro-to-red-team/goodgames/README.md) |
-| Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./htb/intro-to-red-team/writeup/README.md) |
-| Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./htb/intro-to-red-team/precious/README.md) |
-| Driver | Windows | Easy | Default creds, NTLM Hash Capture, Hash Cracking, Printer privesc (CVE-2019-19363)| [Report](./htb/intro-to-red-team/driver/README.md) |
-| BoardLight | Linux | Easy | Default Creds, Subdomain enum, Dolibarr RCE (CVE-2023-30253), Cleartext creds/reuse, Enlightenment privesc (CVE-2022-37706) | [Report](./htb/intro-to-red-team/boardlight/README.md) | 
+| GoodGames | Linux | Easy | SQLi, SSTI, Docker privesc | [Report](./htb/intro-to-read-team/goodgames/README.md) |
+| Writeup | Linux | Easy | SQLi (CVE-2019-9053), Hash Cracking, PATH Hijacking | [Report](./htb/intro-to-read-team/writeup/README.md) |
+| Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./htb/intro-to-read-team/precious/README.md) |
+| Driver | Windows | Easy | Default creds, NTLM Hash Capture, Hash Cracking, Printer privesc (CVE-2019-19363)| [Report](./htb/intro-to-read-team/driver/README.md) |
+| BoardLight | Linux | Easy | Default Creds, Subdomain enum, Dolibarr RCE (CVE-2023-30253), Cleartext creds/reuse, Enlightenment privesc (CVE-2022-37706) | [Report](./htb/intro-to-read-team/boardlightREADME.md) | 
 
 </details>
 
