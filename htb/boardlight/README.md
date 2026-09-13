@@ -477,7 +477,7 @@ Performed automated local enumeration with LinPEAS and exploited a known CVE (CV
 | -------- | ------ | ----- |
 | `admin` (Dolibarr) | Default credentials | `admin:admin` |
 | `www-data` | CVE-2023-30253 RCE | Web server context |
-| `larissa` | Plaintext DB credential reuse | Password: `serverfun2$2023!!` (redact if sharing publicly) |
+| `larissa` | Plaintext DB credential reuse | Password: `serverfun2$2023!!` |
 | `root` | CVE-2022-37706 exploitation | Full host compromise |
 
 ### D. Command Reference Log
