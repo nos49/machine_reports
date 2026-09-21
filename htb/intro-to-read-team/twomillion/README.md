@@ -1,4 +1,4 @@
-# TwoMillion — HackTheBox Report
+# TwoMillion Report
 
 | Difficulty | OS    | Category |
 | ---------- | ----- | -------- |
