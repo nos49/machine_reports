@@ -20,6 +20,7 @@ Click a track to expand its machine list.
 | Precious | Linux | Easy | Command Injection (CVE-2022-25765), Cleartext Creds, Insecure Deserialization | [Report](./htb/intro-to-read-team/precious/README.md) |
 | Driver | Windows | Easy | Default creds, NTLM Hash Capture, Hash Cracking, Printer privesc (CVE-2019-19363)| [Report](./htb/intro-to-read-team/driver/README.md) |
 | BoardLight | Linux | Easy | Default Creds, Subdomain enum, Dolibarr RCE (CVE-2023-30253), Cleartext creds/reuse, Enlightenment privesc (CVE-2022-37706) | [Report](./htb/intro-to-read-team/boardlight/README.md) | 
+| TwoMillion | Linux | Easy | JavaScript Deobfuscation, API Enumeration, Command Injection, System Enumeraton, CVE-2023-0386 | [Report](./htb/intro-to-red-team/twomillion/README.md)
 
 </details>
 
@@ -36,16 +37,18 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | ------------------ | -------- |
 | SQL Injection | GoodGames, Writeup |
 | Server-Side Template Injection (SSTI) | GoodGames |
-| Command Injection | Precious |
+| Command Injection | Precious, TwoMillion |
 | Insecure Deserialization | Precious |
 | Docker / Container Privilege Escalation | GoodGames |
 | PATH Hijacking / Uncontrolled Search Path | Writeup |
 | Hash Cracking | Writeup, Driver |
-| Cleartext Credential Discovery | Precious, BoardLight |
+| Cleartext Credential Discovery | Precious, BoardLight, TwoMillion |
 | Default password (Basic Authentication | Driver, BoardLight |
 | NTLM Hash Capture (Responder) | Driver |
-| Credential Reuse | Goodgames, Writeup, Precious, Driver, BoardLight |
+| Credential Reuse | Goodgames, Writeup, Precious, Driver, BoardLight, TwoMillion |
 | Subdomain Enumeration | BoardLight |
+| JavaScript Deonfuscation | TwoMillion |
+| API Enumeration | TwoMillion |
 
 
 </details>
