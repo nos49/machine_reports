@@ -280,7 +280,7 @@ BloodHound confirmed that `ethan` held direct `DCSync`-capable rights (`GetChang
 secretsdump.py -just-dc ADMINISTRATOR.HTB/ethan@10.129.67.141
 ```
 
-*(See `./images/Pasted_image_20260922195613.png` for the full secretsdump output, including the Administrator NTLM hash.)*
+![Full secretsdump output, including the Administrator NTLM hash.](./images/nt_hash)
 
 **Findings:** With DCSync rights, `ethan` was able to impersonate a Domain Controller and request password data via the Directory Replication Service (DRS) protocol for every domain account, including `Administrator`.
 
