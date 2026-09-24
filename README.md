@@ -23,7 +23,7 @@ Click a track to expand/collaspe its machine list.
 | TwoMillion | Linux | Easy | JavaScript Deobfuscation, API Enumeration, Command Injection, System Enumeraton, CVE-2023-0386 | [Report](./htb/intro-to-red-team/twomillion/README.md) |
 | SteamCloud | Linux | Easy | Exploiting Kuberenetes | [Report](./htb/intro-to-red-team/steamcloud/README.md) |
 |Certified|Windows|Medium|Active Directory enumeration with Bloodhound, Active Directory enumeration with Certipy, Active Directory ACL and DACL abuse, Exploiting ADSC misconfigurations|[Report](./htb/intro-to-red-team/certified/README.md)|
-|Administrator|Windows|Medium|Active Directory enumeration with Bloodhound, Abusing ACLS & DACLs in Active Directory, Performing DCSync attacks|[Report](./htb/intro-to-red-team/administrator/README.md)|
+|Administrator|Windows|Medium|Active Directory enumeration with Bloodhound, Abusing ACLs & DACLs in Active Directory, Performing DCSync attacks|[Report](./htb/intro-to-red-team/administrator/README.md)|
 
 
 </details>
@@ -63,6 +63,11 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Subdomain Enumeration | BoardLight |
 | JavaScript Deobfuscation | TwoMillion |
 | API Enumeration | TwoMillion |
+| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo |
+| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo |
+| DCSync attacks | Administrator | 
+| ADSC Exploitation | Certified, EscapeTwo |
+| File Header Magic Bytes Manipulation | EscapeTwo |
 
 
 </details>
