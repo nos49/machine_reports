@@ -26,6 +26,7 @@ Click a track to expand/collaspe its machine list.
 |Administrator|Windows|Medium|Active Directory enumeration with Bloodhound, Abusing ACLs & DACLs in Active Directory, Performing DCSync attacks|[Report](./htb/intro-to-red-team/administrator/README.md)|
 
 
+
 </details>
 
 
@@ -35,6 +36,7 @@ Click a track to expand/collaspe its machine list.
 | Machine | OS | Difficulty | Key Techniques | Report |
 | ------- | -- | ---------- | ---------------- | ------ |
 | EscapeTwo| Windows | Easy | Active Directory enumeration using Bloodhound, Abuse of misconfigured Active Directory Certificate Services (ADSC), Manipulation of file headers magic bytes, Abusing ACLS & DACLS in Active Directory | [Report](./htb/active_directory_exploitation/escapetwo/README.md) |
+| Support | Windows | Easy | Connecting to an SMB share, Querying an LDAP server for information, Performing a Resource Based Constrained Delegation attack | [Report](./htb/active_directory_exploitation/support/README.md) |
 
 </details>
 
@@ -63,11 +65,14 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Subdomain Enumeration | BoardLight |
 | JavaScript Deobfuscation | TwoMillion |
 | API Enumeration | TwoMillion |
-| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo |
-| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo |
+| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support |
+| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo, Support |
 | DCSync attacks | Administrator | 
 | ADSC Exploitation | Certified, EscapeTwo |
 | File Header Magic Bytes Manipulation | EscapeTwo |
+| Connecting to an SMB share | Support |
+| Querying an LDAP server | Support |
+| Resource Based Constrained Delegation attack | Support |
 
 
 </details>
