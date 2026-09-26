@@ -38,6 +38,7 @@ Click a track to expand/collaspe its machine list.
 | EscapeTwo| Windows | Easy | Active Directory enumeration using Bloodhound, Abuse of misconfigured Active Directory Certificate Services (ADSC), Manipulation of file headers magic bytes, Abusing ACLS & DACLS in Active Directory | [Report](./htb/active_directory_exploitation/escapetwo/README.md) |
 | Support | Windows | Easy | Connecting to an SMB share, Querying an LDAP server for information, Performing a Resource Based Constrained Delegation attack | [Report](./htb/active_directory_exploitation/support/README.md) |
 | Timelapse | Windows | Easy | Unauthenticated SMB Enumeration, Certificate Recovery, Offline Password Cracking Against Archives & Certificate Files, Certificate-Based WinRM Authentication, Credential Discovery via PowerShell Command History, LAPS Password Disclosure | [Report](./htb/active_directory_exploitation/timelapse/README.md) |
+| Return | Windows | Easy | Network Printer Abuse, Server Operators Group Abuse | [Report](./htb/active_directory_exploitation/return/README.md)
 
 </details>
 
@@ -75,6 +76,8 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Querying an LDAP server | Support |
 | Resource Based Constrained Delegation attack | Support |
 | LAPS Password Disclosure | Timelapse |
+| Network Printer Abuse | Return |
+| Server Operators Group Abuse | Return |
 
 
 </details>
