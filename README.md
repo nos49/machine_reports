@@ -58,10 +58,10 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Insecure Deserialization | Precious |
 | Docker / Container Privilege Escalation | GoodGames |
 | PATH Hijacking / Uncontrolled Search Path | Writeup |
-| Hash Cracking | Writeup, Driver |
+| Hash Cracking | Writeup, Driver, Timelapse |
 | Cleartext Credential Discovery | Precious, BoardLight, TwoMillion |
-| Default password (Basic Authentication | Driver, BoardLight |
-| NTLM Hash Capture (Responder) | Driver |
+| Default password (Basic Authentication) | Driver, BoardLight |
+| NTLM Hash Capture (Responder) | Driver, Certified, Administrator, EscapeTwo, Support |
 | Credential Reuse | Goodgames, Writeup, Precious, Driver, BoardLight, TwoMillion |
 | Subdomain Enumeration | BoardLight |
 | JavaScript Deobfuscation | TwoMillion |
@@ -71,9 +71,10 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | DCSync attacks | Administrator | 
 | ADSC Exploitation | Certified, EscapeTwo |
 | File Header Magic Bytes Manipulation | EscapeTwo |
-| Connecting to an SMB share | Support |
+| Connecting to an SMB share | Support, Timelapse |
 | Querying an LDAP server | Support |
 | Resource Based Constrained Delegation attack | Support |
+| LAPS Password Disclosure | Timelapse |
 
 
 </details>
