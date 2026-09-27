@@ -25,8 +25,6 @@ Click a track to expand/collaspe its machine list.
 |Certified|Windows|Medium|Active Directory enumeration with Bloodhound, Active Directory enumeration with Certipy, Active Directory ACL and DACL abuse, Exploiting ADSC misconfigurations|[Report](./htb/intro-to-red-team/certified/README.md)|
 |Administrator|Windows|Medium|Active Directory enumeration with Bloodhound, Abusing ACLs & DACLs in Active Directory, Performing DCSync attacks|[Report](./htb/intro-to-red-team/administrator/README.md)|
 
-
-
 </details>
 
 
@@ -41,6 +39,7 @@ Click a track to expand/collaspe its machine list.
 | Return | Windows | Easy | Network Printer Abuse, Server Operators Group Abuse | [Report](./htb/active_directory_exploitation/return/README.md) |
 | Sauna | Windows | Easy | ASREPRoasting, DCSync | [Report](./htb/active_directory_exploitation/sauna/README.md) |
 | Authority | Windows | Medium | Cracking Ansible Vaults, Enumerating & Exploiting ADCS, Active Directory Enumeration | [Report](./htb/active_directory_exploitation/authority/README.md) |
+| Escape | Windows | Medium | Kerberos Authentication, ESC1 Attack, NTLM Authentication | [Report](./htb/active_directory_exploitation/escape/README.md) |
 
 </details>
 
@@ -70,11 +69,11 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | JavaScript Deobfuscation | TwoMillion |
 | API Enumeration | TwoMillion |
 | Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support, Authority |
-| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo, Support |
+| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo, Support, Escape |
 | DCSync attacks | Administrator, Sauna | 
-| ADSC Exploitation | Certified, EscapeTwo, Authority |
+| ADSC Exploitation | Certified, EscapeTwo, Authority, Escape |
 | File Header Magic Bytes Manipulation | EscapeTwo |
-| Connecting to an SMB share | Support, Timelapse |
+| Connecting to an SMB share | Support, Timelapse, Escape |
 | Querying an LDAP server | Support |
 | Resource Based Constrained Delegation attack | Support |
 | LAPS Password Disclosure | Timelapse |
@@ -83,7 +82,6 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | ASREPRoasting | Sauna |
 | Cracking Ansible Vaults | Authority |
 | Pass-the-Cert attack | Authority |
-
 
 </details>
 
