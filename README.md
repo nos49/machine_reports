@@ -40,6 +40,7 @@ Click a track to expand/collaspe its machine list.
 | Timelapse | Windows | Easy | Unauthenticated SMB Enumeration, Certificate Recovery, Offline Password Cracking Against Archives & Certificate Files, Certificate-Based WinRM Authentication, Credential Discovery via PowerShell Command History, LAPS Password Disclosure | [Report](./htb/active_directory_exploitation/timelapse/README.md) |
 | Return | Windows | Easy | Network Printer Abuse, Server Operators Group Abuse | [Report](./htb/active_directory_exploitation/return/README.md) |
 | Sauna | Windows | Easy | ASREPRoasting, DCSync | [Report](./htb/active_directory_exploitation/sauna/README.md) |
+| Authority Windows | Medium | Cracking Ansible Vaults, Enumerating & Exploiting ADCS, Active Directory Enumeration | [Report](./htb/active_directory_exploitation/authority/README.md) |
 
 </details>
 
@@ -68,10 +69,10 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Subdomain Enumeration | BoardLight |
 | JavaScript Deobfuscation | TwoMillion |
 | API Enumeration | TwoMillion |
-| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support |
+| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support, Authority |
 | Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo, Support |
 | DCSync attacks | Administrator, Sauna | 
-| ADSC Exploitation | Certified, EscapeTwo |
+| ADSC Exploitation | Certified, EscapeTwo, Authority |
 | File Header Magic Bytes Manipulation | EscapeTwo |
 | Connecting to an SMB share | Support, Timelapse |
 | Querying an LDAP server | Support |
@@ -80,6 +81,8 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Network Printer Abuse | Return |
 | Server Operators Group Abuse | Return |
 | ASREPRoasting | Sauna |
+| Cracking Ansible Vaults | Authority |
+| Pass-the-Cert attack | Authority |
 
 
 </details>
