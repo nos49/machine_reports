@@ -40,7 +40,7 @@ Click a track to expand/collaspe its machine list.
 | Timelapse | Windows | Easy | Unauthenticated SMB Enumeration, Certificate Recovery, Offline Password Cracking Against Archives & Certificate Files, Certificate-Based WinRM Authentication, Credential Discovery via PowerShell Command History, LAPS Password Disclosure | [Report](./htb/active_directory_exploitation/timelapse/README.md) |
 | Return | Windows | Easy | Network Printer Abuse, Server Operators Group Abuse | [Report](./htb/active_directory_exploitation/return/README.md) |
 | Sauna | Windows | Easy | ASREPRoasting, DCSync | [Report](./htb/active_directory_exploitation/sauna/README.md) |
-| Authority Windows | Medium | Cracking Ansible Vaults, Enumerating & Exploiting ADCS, Active Directory Enumeration | [Report](./htb/active_directory_exploitation/authority/README.md) |
+| Authority | Windows | Medium | Cracking Ansible Vaults, Enumerating & Exploiting ADCS, Active Directory Enumeration | [Report](./htb/active_directory_exploitation/authority/README.md) |
 
 </details>
 
