@@ -50,6 +50,7 @@ Click a track to expand/collaspe its machine list.
 | Machine | OS | Difficulty | Key Techniques | Report |
 | ------- | -- | ---------- | ---------------- | ------ |
 | Fluffy | Windows | Easy | AD Domain Enumeration with Bloodhound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/fluffy/README.md) |
+| Jeeves | Windows | Medium | Obtaining Shell through Jenkins, Pass-the-hash, Enumerating Alternate Data Streams | [Report](./htb/cpts_prep/jeeves/README.md) |
 
 </details>
 ---
@@ -72,9 +73,9 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Hash Cracking | Writeup, Driver, Timelapse |
 | Cleartext Credential Discovery | Precious, BoardLight, TwoMillion |
 | Default password (Basic Authentication) | Driver, BoardLight |
-| NTLM Hash Capture (Responder) | Driver, Certified, Administrator, EscapeTwo, Support |
+| NTLM Hash Capture (Responder) | Driver, Certified, Administrator, EscapeTwo, Support, Fluffy |
 | Credential Reuse | Goodgames, Writeup, Precious, Driver, BoardLight, TwoMillion |
-| Subdomain Enumeration | BoardLight |
+| Subdomain Enumeration | BoardLight, Jeeves |
 | JavaScript Deobfuscation | TwoMillion |
 | API Enumeration | TwoMillion |
 | Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support, Authority, Fluffy |
@@ -91,6 +92,8 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | ASREPRoasting | Sauna |
 | Cracking Ansible Vaults | Authority |
 | Pass-the-Cert attack | Authority |
+| Pass-the-hash attack | Jeeves |
+| Enumerating alternate data streams | Jeeves |
 
 </details>
 
