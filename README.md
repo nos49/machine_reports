@@ -43,6 +43,15 @@ Click a track to expand/collaspe its machine list.
 
 </details>
 
+
+<details open>
+<summary><strong>Active Directory Exploitation</strong> </summary>
+
+| Machine | OS | Difficulty | Key Techniques | Report |
+| ------- | -- | ---------- | ---------------- | ------ |
+| Fluffy | Windows | Easy | AD Domain Enumeration with Bloodhound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/fluffy/.README.md) |
+
+</details>
 ---
 
 ## Skills Index
@@ -68,10 +77,10 @@ A cross-reference of techniques demonstrated across all reports, useful for revi
 | Subdomain Enumeration | BoardLight |
 | JavaScript Deobfuscation | TwoMillion |
 | API Enumeration | TwoMillion |
-| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support, Authority |
-| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo, Support, Escape |
+| Active Directory Enumeration with Bloodhound | Certified, Administrator, EscapeTwo, Support, Authority, Fluffy |
+| Abusing ACLs & DACLs Active Directory | Certified, Administrator, EscapeTwo, Support, Escape, Fluffy |
 | DCSync attacks | Administrator, Sauna | 
-| ADSC Exploitation | Certified, EscapeTwo, Authority, Escape |
+| ADSC Exploitation | Certified, EscapeTwo, Authority, Escape, Fluffy |
 | File Header Magic Bytes Manipulation | EscapeTwo |
 | Connecting to an SMB share | Support, Timelapse, Escape |
 | Querying an LDAP server | Support |
