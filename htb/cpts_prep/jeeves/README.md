@@ -174,7 +174,7 @@ Submitting a single quote (`'`) into the search function triggered a verbose ser
 
 [![ASP.NET server error page revealing a SQL Server exception, the source file path c:\webroot\Sock_Puppets\App_Code\Generic DataAccess.cs, and the backend version Microsoft SQL Server 2005](./images/sqlierror.png)](./images/sqlierror.png)
 
-**Findings:** The application returns a detailed ASP.NET exception disclosing the backend database (Microsoft SQL Server 2005), internal source file paths (`c:\webroot\Sock_Puppets\...`), and a stack trace. While the input reaches a SQL query, repeated UNION-based injection attempts simply returned the same `error.html?` page and did not yield a usable injection, so this avenue was deprioritized in favour of the Jetty service. The verbose errors nonetheless represent an information-disclosure weakness (Finding #4).
+**Findings:** The application returns a detailed ASP.NET exception disclosing the backend database (Microsoft SQL Server 2005), internal source file paths (`c:\webroot\Sock_Puppets\...`), and a stack trace. While the input reaches a SQL query, repeated UNION-based injection attempts simply returned the same `error.html?` page and did not yield a usable injection, so this avenue was deprioritized in favor of the Jetty service. The verbose errors nonetheless represent an information-disclosure weakness (Finding #4).
 
 ---
 
@@ -404,7 +404,7 @@ println process.text
 | **Description (Incl. Root Cause)** | The local Administrator's NTLM hash was stored in the KeePass database recovered from the `kohsuke` user's Documents (Finding #3). Because Windows NTLM authentication accepts the hash directly, the hash could be replayed to authenticate as Administrator without ever cracking it to plaintext — a pass-the-hash attack. The root cause is the storage of a reusable privileged credential (the Administrator NT hash) in a location accessible to a lower-privileged user, combined with NTLM's susceptibility to hash replay. |
 | **Security Impact**                | Full administrative (SYSTEM-level) control of the host was obtained by replaying the stored hash, escalating from the low-privileged `kohsuke` foothold to complete compromise. |
 | **Affected Host(s)**               | `10.129.228.112:445` — local `administrator` account                                                                                                                                                     |
-| **Remediation**                    | - Never store privileged credentials or hashes in password databases accessible to standard users; isolate administrative credentials in a dedicated privileged-access-management solution — Rotate the Administrator password/hash immediately, as it has been disclosed — Enforce SMB signing and consider disabling NTLM in favour of Kerberos to mitigate pass-the-hash — Apply least privilege and credential-tiering so that a user-level compromise cannot reach Administrator credentials |
+| **Remediation**                    | - Never store privileged credentials or hashes in password databases accessible to standard users; isolate administrative credentials in a dedicated privileged-access-management solution — Rotate the Administrator password/hash immediately, as it has been disclosed — Enforce SMB signing and consider disabling NTLM in favor of Kerberos to mitigate pass-the-hash — Apply least privilege and credential-tiering so that a user-level compromise cannot reach Administrator credentials |
 | **References**                     | [MITRE ATT&CK: T1550.002 — Use Alternate Authentication Material: Pass the Hash](https://attack.mitre.org/techniques/T1550/002/) · [MITRE ATT&CK: T1555 — Credentials from Password Stores](https://attack.mitre.org/techniques/T1555/) · [CWE-522: Insufficiently Protected Credentials](https://cwe.mitre.org/data/definitions/522.html) |
 
 **Evidence:**
@@ -484,7 +484,7 @@ john keepass.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ### Medium Term
 
 - **Finding #1 (Unauthenticated Jenkins)** — Upgrade Jenkins and all plugins to current versions, and establish a process for keeping CI/CD tooling patched. Place administrative tools behind a VPN or internal-only network segment.
-- **Finding #2 (Pass-the-Hash)** — Enforce SMB signing, begin phasing out NTLM in favour of Kerberos, and deploy credential tiering so user-level compromise cannot reach administrator secrets.
+- **Finding #2 (Pass-the-Hash)** — Enforce SMB signing, begin phasing out NTLM in favor of Kerberos, and deploy credential tiering so user-level compromise cannot reach administrator secrets.
 - **Finding #3 (Weak KeePass Password)** — Introduce a minimum master-password strength standard for all credential stores and move shared secrets into a managed vault.
 - **Finding #4 (Verbose SQL Errors)** — Adopt parameterized queries across the application and upgrade the end-of-life SQL Server 2005 backend.
 
