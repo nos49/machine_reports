@@ -174,7 +174,7 @@ Submitting a single quote (`'`) into the search function triggered a verbose ser
 
 [![ASP.NET server error page revealing a SQL Server exception, the source file path c:\webroot\Sock_Puppets\App_Code\Generic DataAccess.cs, and the backend version Microsoft SQL Server 2005](./images/sqlierror.png)](./images/sqlierror.png)
 
-**Findings:** The application returns a detailed ASP.NET exception disclosing the backend database (Microsoft SQL Server 2005), internal source file paths (`c:\webroot\Sock_Puppets\...`), and a stack trace. While the input reaches a SQL query, repeated UNION-based injection attempts simply returned the same `error.html?` page and did not yield a usable injection, so this avenue was deprioritised in favour of the Jetty service. The verbose errors nonetheless represent an information-disclosure weakness (Finding #4).
+**Findings:** The application returns a detailed ASP.NET exception disclosing the backend database (Microsoft SQL Server 2005), internal source file paths (`c:\webroot\Sock_Puppets\...`), and a stack trace. While the input reaches a SQL query, repeated UNION-based injection attempts simply returned the same `error.html?` page and did not yield a usable injection, so this avenue was deprioritized in favour of the Jetty service. The verbose errors nonetheless represent an information-disclosure weakness (Finding #4).
 
 ---
 
@@ -455,7 +455,7 @@ john keepass.hash --wordlist=/usr/share/wordlists/rockyou.txt
 | **Description (Incl. Root Cause)** | Submitting a single quote to the "Ask Jeeves" search function on port 80 caused the application to return a full ASP.NET exception page. The error disclosed the backend database product and version (Microsoft SQL Server 2005), internal source file paths (`c:\webroot\Sock_Puppets\App_Code\Generic DataAccess.cs`), source code line numbers, and a detailed stack trace. The root cause is an application configured to return unhandled exception details to the client rather than a generic error page. |
 | **Security Impact**                | The disclosed information reveals the technology stack, internal directory structure, and code layout, all of which aid an attacker in crafting targeted attacks (such as SQL injection). Although UNION-based injection was not successfully exploited here, the verbose errors confirmed the input reaches a SQL query and leaked reconnaissance-grade detail. |
 | **Affected Host(s)**               | `10.129.228.112:80` (Ask Jeeves application, `error.html?`)                                                                                                                                              |
-| **Remediation**                    | - Configure the application to return generic error pages and disable detailed exception output in production (e.g., set ASP.NET `customErrors` to `On`/`RemoteOnly`) — Log detailed errors server-side only, never to the client — Use parameterised queries / prepared statements to prevent SQL injection and validate all user input — Consider upgrading the end-of-life Microsoft SQL Server 2005 backend |
+| **Remediation**                    | - Configure the application to return generic error pages and disable detailed exception output in production (e.g., set ASP.NET `customErrors` to `On`/`RemoteOnly`) — Log detailed errors server-side only, never to the client — Use parameterized queries / prepared statements to prevent SQL injection and validate all user input — Consider upgrading the end-of-life Microsoft SQL Server 2005 backend |
 | **References**                     | [MITRE ATT&CK: T1190 — Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/) · [CWE-209: Generation of Error Message Containing Sensitive Information](https://cwe.mitre.org/data/definitions/209.html) |
 
 **Evidence:**
@@ -486,12 +486,12 @@ john keepass.hash --wordlist=/usr/share/wordlists/rockyou.txt
 - **Finding #1 (Unauthenticated Jenkins)** — Upgrade Jenkins and all plugins to current versions, and establish a process for keeping CI/CD tooling patched. Place administrative tools behind a VPN or internal-only network segment.
 - **Finding #2 (Pass-the-Hash)** — Enforce SMB signing, begin phasing out NTLM in favour of Kerberos, and deploy credential tiering so user-level compromise cannot reach administrator secrets.
 - **Finding #3 (Weak KeePass Password)** — Introduce a minimum master-password strength standard for all credential stores and move shared secrets into a managed vault.
-- **Finding #4 (Verbose SQL Errors)** — Adopt parameterised queries across the application and upgrade the end-of-life SQL Server 2005 backend.
+- **Finding #4 (Verbose SQL Errors)** — Adopt parameterized queries across the application and upgrade the end-of-life SQL Server 2005 backend.
 
 ### Long Term
 
 - Implement a secure deployment baseline for all internet- and network-facing applications that requires authentication, network restriction, and current patch levels before any service is exposed.
-- Deploy a centralised privileged-access-management and secrets solution to eliminate the practice of storing credentials and hashes in files and personal password databases.
+- Deploy a centralized privileged-access-management and secrets solution to eliminate the practice of storing credentials and hashes in files and personal password databases.
 - Establish recurring vulnerability assessments and configuration reviews to detect exposed services, weak credentials, and permission drift before they can be exploited.
 - Provide developer and administrator training on secure error handling, credential hygiene, and the risks of hash reuse.
 
@@ -505,7 +505,7 @@ john keepass.hash --wordlist=/usr/share/wordlists/rockyou.txt
 
 **Skill/Technique 3: Offline KeePass Cracking.** Exfiltrated a KeePass database via Base64 encoding, extracted its hash with `keepass2john`, and cracked the weak master password with John the Ripper — illustrating the risk of weakly protected credential stores left on endpoints.
 
-**Skill/Technique 4: Pass-the-Hash Privilege Escalation.** Recognised that the KeePass "Backup stuff" entry held an NTLM hash rather than a plaintext password, validated it with NetExec, and replayed it with Impacket's `psexec` to gain Administrator access — demonstrating that hashes are reusable credentials in NTLM environments.
+**Skill/Technique 4: Pass-the-Hash Privilege Escalation.** Recognized that the KeePass "Backup stuff" entry held an NTLM hash rather than a plaintext password, validated it with NetExec, and replayed it with Impacket's `psexec` to gain Administrator access — demonstrating that hashes are reusable credentials in NTLM environments.
 
 **Skill/Technique 5: NTFS Alternate Data Stream Recovery.** Interpreted the "look deeper" hint, used `dir /r` to enumerate hidden NTFS Alternate Data Streams, and read the flag from `hm.txt:root.txt` — a technique both attackers and defenders must understand for data hiding on Windows.
 
