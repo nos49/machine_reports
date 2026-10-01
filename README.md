@@ -45,7 +45,7 @@ Click a track to expand/collaspe its machine list.
 
 
 <details close>
-<summary><strong>Active Directory Exploitation</strong> </summary>
+<summary><strong>CPTS Preparation</strong> </summary>
 
 | Machine | OS | Difficulty | Key Techniques | Report |
 | ------- | -- | ---------- | ---------------- | ------ |
