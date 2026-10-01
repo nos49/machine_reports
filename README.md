@@ -10,7 +10,7 @@ Each report follows a standard structure: Executive Summary → Scope → Method
 
 Click a track to expand/collaspe its machine list.
 
-<details open>
+<details close>
 <summary><strong>Intro to Red Team</strong> </summary>
 
 | Machine | OS | Difficulty | Key Techniques | Report |
@@ -28,7 +28,7 @@ Click a track to expand/collaspe its machine list.
 </details>
 
 
-<details open>
+<details close>
 <summary><strong>Active Directory Exploitation</strong> </summary>
 
 | Machine | OS | Difficulty | Key Techniques | Report |
@@ -44,7 +44,7 @@ Click a track to expand/collaspe its machine list.
 </details>
 
 
-<details open>
+<details close>
 <summary><strong>Active Directory Exploitation</strong> </summary>
 
 | Machine | OS | Difficulty | Key Techniques | Report |
@@ -59,7 +59,7 @@ Click a track to expand/collaspe its machine list.
 
 A cross-reference of techniques demonstrated across all reports, useful for reviewers scanning for specific competencies.
 
-<details open>
+<details close>
 <summary>Expand skills index</summary>
 
 | Skill / Technique | Machines |
