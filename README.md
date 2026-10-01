@@ -49,7 +49,7 @@ Click a track to expand/collaspe its machine list.
 
 | Machine | OS | Difficulty | Key Techniques | Report |
 | ------- | -- | ---------- | ---------------- | ------ |
-| Fluffy | Windows | Easy | AD Domain Enumeration with Bloodhound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/fluffy/.README.md) |
+| Fluffy | Windows | Easy | AD Domain Enumeration with Bloodhound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/fluffy/README.md) |
 
 </details>
 ---
