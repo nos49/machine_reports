@@ -51,6 +51,7 @@ Click a track to expand/collaspe its machine list.
 | ------- | -- | ---------- | ---------------- | ------ |
 | Fluffy | Windows | Easy | AD Domain Enumeration with Bloodhound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/fluffy/README.md) |
 | Jeeves | Windows | Medium | Obtaining Shell through Jenkins, Pass-the-hash, Enumerating Alternate Data Streams | [Report](./htb/cpts_prep/jeeves/README.md) |
+| TombWatcher | Windows | Medium | AD Domain Enumeration with BloodHound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/tombwatcher/README.md) |
 
 </details>
 ---
