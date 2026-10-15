@@ -41,6 +41,7 @@ Click a track to expand/collaspe its machine list.
 | Authority | Windows | Medium | Cracking Ansible Vaults, Enumerating & Exploiting ADCS, Active Directory Enumeration | [Report](./htb/active_directory_exploitation/authority/README.md) |
 | Escape | Windows | Medium | Kerberos Authentication, ESC1 Attack, NTLM Authentication | [Report](./htb/active_directory_exploitation/escape/README.md) |
 
+
 </details>
 
 
@@ -52,6 +53,7 @@ Click a track to expand/collaspe its machine list.
 | Fluffy | Windows | Easy | AD Domain Enumeration with Bloodhound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/fluffy/README.md) |
 | Jeeves | Windows | Medium | Obtaining Shell through Jenkins, Pass-the-hash, Enumerating Alternate Data Streams | [Report](./htb/cpts_prep/jeeves/README.md) |
 | TombWatcher | Windows | Medium | AD Domain Enumeration with BloodHound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/tombwatcher/README.md) |
+| Media | Windows | Medium | NTLM Theft via Malicious File Upload, Web App Source Code Analysis, Windows Directory Junction Abuse, PHP Reverse Shell, Service Account Privilege Token Recovery, SeImperonatePrivilege Escalation via GodPotato | [Report](./htb/cpts_prep/media/README.md) | 
 
 </details>
 ---
