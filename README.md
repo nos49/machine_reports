@@ -54,6 +54,7 @@ Click a track to expand/collaspe its machine list.
 | Jeeves | Windows | Medium | Obtaining Shell through Jenkins, Pass-the-hash, Enumerating Alternate Data Streams | [Report](./htb/cpts_prep/jeeves/README.md) |
 | TombWatcher | Windows | Medium | AD Domain Enumeration with BloodHound, AD Enumeration with Certipy, AD ACL and DACL Abuse | [Report](./htb/cpts_prep/tombwatcher/README.md) |
 | Media | Windows | Medium | NTLM Theft via Malicious File Upload, Web App Source Code Analysis, Windows Directory Junction Abuse, PHP Reverse Shell, Service Account Privilege Token Recovery, SeImperonatePrivilege Escalation via GodPotato | [Report](./htb/cpts_prep/media/README.md) | 
+| POV | Windows | Medium | Virtual Host Enumeration via Ffuf, Path Traversal/Local File Inclusion, ASP.NET ViewState Deserialization for Unauthenticated RCE, PSCredential Decryption via DPAPI Context, Privilege Escalation via SeDebugPrivilege and Process Impersonation | [Report](./htb/cpts_prep/pov/README.md) |
 
 </details>
 ---
